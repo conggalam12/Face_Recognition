@@ -28,7 +28,7 @@ wget https://github.com/conggalam12/Face_Recognition/releases/tag/weights/resnet
       |--- image_person_2_2.jpg
 ```
 ### Setup folder train
-You set path_folder in example/finetune.ipynb<br>
+You set path_folder in examples/finetune.ipynb<br>
 ```
 data_dir = 'folder_data_img'
 ```
