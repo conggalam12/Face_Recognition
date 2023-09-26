@@ -12,6 +12,7 @@ import os
 
 data_dir = "img"
 workers = 0 if os.name == 'nt' else 8
+croped_image(data_dir)
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 resnet = InceptionResnetV1(
@@ -31,12 +32,12 @@ trans = transforms.Compose([
     transforms.ToTensor(),
     fixed_image_standardization
 ])
+
 dataset = datasets.ImageFolder(data_dir + '_cropped', transform=trans)
 img_inds = np.arange(len(dataset))
 np.random.shuffle(img_inds)
 train_inds = img_inds[:int(0.8 * len(img_inds))]
 val_inds = img_inds[int(0.8 * len(img_inds)):]
-
 
 train_loader = DataLoader(
     dataset,
