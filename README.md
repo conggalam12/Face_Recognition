@@ -1,6 +1,7 @@
 # Face_Recognition
 Fine tune Facenet-pytorch with custom dataset<br>
-You can see the original in here [facenet-pytorch](https://github.com/timesler/facenet-pytorch)
+You can see the original in here [facenet-pytorch](https://github.com/timesler/facenet-pytorch) <br>
+I recognition 31 persons , you can see in [here](https://github.com/conggalam12/Face_Recognition/blob/main/class.txt)
 ## Link dataset 
 [Data](https://www.kaggle.com/datasets/vasukipatel/face-recognition-dataset?select=Original+Images&fbclid=IwAR0m77Hw6AU7EdLQI1tTE434Bl80PnpUispP3I_ashuYdDJRbPQdpDHIfsc)
 ## Clone the repository
