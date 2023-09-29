@@ -42,11 +42,6 @@ And you run train MTCNN , take the face each images like that <br>
 Continue train facenet
 
 ## How to use
-### Setup path image 
-```
-predict([path_img])
-```
-### Run
 ```
 python demo.py --path_img [path_your_image] --path_model [path_youe_model]
 ```
