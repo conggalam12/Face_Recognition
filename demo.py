@@ -7,8 +7,8 @@ from torchvision import datasets, transforms
 import numpy as np
 import os
 from PIL import Image
-
 import argparse
+
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 print('Running on device: {}'.format(device))
 
