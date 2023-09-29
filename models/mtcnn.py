@@ -265,7 +265,7 @@ class MTCNN(nn.Module):
         faces = self.extract(img, batch_boxes, save_path)
 
         if return_prob:
-            return faces, batch_probs
+            return faces,batch_boxes
         else:
             return faces
 
