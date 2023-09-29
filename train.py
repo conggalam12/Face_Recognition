@@ -1,4 +1,6 @@
-from facenet_pytorch import InceptionResnetV1, fixed_image_standardization, training
+from models.mtcnn import MTCNN
+from models.inception_resnet_v1 import InceptionResnetV1
+from models.utils import training
 import torch
 from torch.utils.data import DataLoader, SubsetRandomSampler
 from torch import optim
