@@ -41,16 +41,23 @@ And you run train MTCNN , take the face each images like that <br>
 
 Continue train facenet
 
-## How to use
+## Using with single face
 ```
 python demo.py --path_img [path_your_image] --path_model [path_youe_model]
 ```
-## Result
+## Result single face
 |||
 |-------|-------|
 |![img1](https://github.com/conggalam12/Face_Recognition/blob/main/img/Natalie.PNG) | ![img2](https://github.com/conggalam12/Face_Recognition/blob/main/img/Natalie2.PNG) |
 |![img3](https://github.com/conggalam12/Face_Recognition/blob/main/img/robert.PNG) | ![img4](https://github.com/conggalam12/Face_Recognition/blob/main/img/robert2.PNG) |
-
+## Use with multiple faces
+```
+python demo_multi.py --path_img [path_your_image] --path_model [path_youe_model]
+```
+## Result single face
+|||
+|-------|-------|
+|![img1](https://github.com/conggalam12/Face_Recognition/blob/main/img/multiface.PNG) | ![img2](https://github.com/conggalam12/Face_Recognition/blob/main/img/multiface2.PNG) |
 ## References
 
 1. David Sandberg's facenet repo: [https://github.com/davidsandberg/facenet](https://github.com/davidsandberg/facenet)
