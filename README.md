@@ -48,15 +48,9 @@ predict([path_img])
 ```
 ### Run
 ```
-python demo.py
+python demo.py --path_img [path_your_image] --path_model [path_youe_model]
 ```
-### Result
-```
-Running on device: cpu
-Predict: Vijay Deverakonda
-```
-
-## Model predict
+## Result
 |||
 |-------|-------|
 |![img1](https://github.com/conggalam12/Face_Recognition/blob/main/img/Natalie.PNG) | ![img2](https://github.com/conggalam12/Face_Recognition/blob/main/img/Natalie2.PNG) |
