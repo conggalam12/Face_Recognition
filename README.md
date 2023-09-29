@@ -53,15 +53,14 @@ python demo.py
 ### Result
 ```
 Running on device: cpu
-Label :  Vijay Deverakonda
 Predict: Vijay Deverakonda
 ```
 
 ## Model predict
-![img1](https://github.com/conggalam12/Face_Recognition/blob/main/img/Akshay%20Kumar_1.jpg)
-### Predict Akshay Kumar
-![img2](https://github.com/conggalam12/Face_Recognition/blob/main/img/Robert%20Downey%20Jr_44.jpg)
-### Predict Robert Downey
+![img1](https://github.com/conggalam12/Face_Recognition/blob/main/img/Natalie.PNG)
+![img2](https://github.com/conggalam12/Face_Recognition/blob/main/img/Natalie2.PNG)
+![img3](https://github.com/conggalam12/Face_Recognition/blob/main/img/robert.PNG)
+![img3](https://github.com/conggalam12/Face_Recognition/blob/main/img/robert2.PNG)
 
 
 
