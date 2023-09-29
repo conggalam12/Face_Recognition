@@ -8,6 +8,7 @@ import numpy as np
 import os
 from PIL import Image
 
+import argparse
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 print('Running on device: {}'.format(device))
 
@@ -36,13 +37,13 @@ def draw_image(path,name,boxes):
     image.show()
 
 
-def predict(path):
+def predict(path_img,path_model_resnet):
     mtcnn = MTCNN(
         image_size=160, margin=0, min_face_size=20,
         thresholds=[0.6, 0.7, 0.7], factor=0.709, post_process=True,
         device=device
     )
-    image = load_img(path)
+    image = load_img(path_img)
     faces,batch_boxes= mtcnn(image,None,True)
 
     resnet = InceptionResnetV1(
@@ -51,17 +52,21 @@ def predict(path):
         num_classes=31
     ).to(device)
 
-    resnet.load_state_dict(torch.load("weights/resnet_face.pth",map_location=torch.device('cpu')))
+    resnet.load_state_dict(torch.load(path_model_resnet,map_location=torch.device('cpu')))
     resnet.eval()
     result = resnet(faces.unsqueeze(0))
     id = int(torch.argmax(result))
 
-    folder_img = "/home/congnt/congnt/python/face_recognition/img"
-    list_name = os.listdir(folder_img)
-    list_name.sort()
-    print("Predict:",list_name[id])
-    draw_image(path,list_name[id],batch_boxes)
-
-
-path = "img/Natalie Portman/Natalie Portman_10.jpg"
-predict(path)
+    with open("class.txt",'r') as file:
+        name = file.read()
+        list_name = name.split("\n")
+    draw_image(path_img,list_name[id],batch_boxes)
+def parse_opt():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--path_img',type=str,required=True,help='path_img')
+    parser.add_argument('--path_model', type=str, default='weights/resnet_face.pth', help='path model resnet')
+    opt = parser.parse_args()
+    return opt
+if __name__ == "__main__":
+    opt = parse_opt()
+    predict(opt.path_img , opt.path_model)
