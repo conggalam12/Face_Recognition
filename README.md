@@ -54,7 +54,7 @@ python demo.py --path_img [path_your_image] --path_model [path_youe_model]
 ```
 python demo_multi.py --path_img [path_your_image] --path_model [path_youe_model]
 ```
-## Result single face
+## Result multiple face
 |||
 |-------|-------|
 |![img1](https://github.com/conggalam12/Face_Recognition/blob/main/img/multiface.PNG) | ![img2](https://github.com/conggalam12/Face_Recognition/blob/main/img/multiface2.PNG) |
