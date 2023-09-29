@@ -1,4 +1,6 @@
-from facenet_pytorch import MTCNN, InceptionResnetV1, fixed_image_standardization
+from models.mtcnn import MTCNN
+from models.inception_resnet_v1 import InceptionResnetV1
+from models.utils import training
 import torch
 from torch import optim
 from torchvision import datasets, transforms
