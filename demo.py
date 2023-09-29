@@ -10,16 +10,7 @@ from PIL import Image
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 print('Running on device: {}'.format(device))
-def take_label(str):
-    parts = str.split("/")
-    file_name_with_extension = parts[-1]
-    name_without_extension = file_name_with_extension.split(".")[0]
-    if "_" == name_without_extension[-3]:
-        print("Label :",name_without_extension[:-3])
-    elif "_" == name_without_extension[-4]:
-        print("Label :",name_without_extension[:-4])
-    else:
-        print("Label : ",name_without_extension[:-2])
+
 def load_img(path):
     trans = transforms.Compose([
         transforms.Resize((512, 512)),
@@ -27,25 +18,32 @@ def load_img(path):
     image = Image.open(path)
     image = trans(image)
     return image
-def load_img_res(path):
-    trans = transforms.Compose([
-        np.float32,
-        transforms.ToTensor(),
-        fixed_image_standardization
-    ])
+
+
+def draw_image(path,name,boxes):
     image = Image.open(path)
-    image = trans(image).unsqueeze(0)
-    return image
+    w_image,h_image = image.size
+    # image = image.resize((512, 512))
+    draw = ImageDraw.Draw(image)
+    scale_w = w_image/512
+    scale_h = h_image/521
+    x, y, w, h = boxes[0][0],boxes[0][1],boxes[0][2],boxes[0][3]
+    x , w = x*scale_w,w*scale_w
+    y , h = y*scale_h,h*scale_h
+    font = ImageFont.truetype("font/times new roman bold.ttf", size=24)
+    draw.rectangle([x,y,w,h], outline="green", width=4)
+    draw.text((x, y - 30), name, fill="red",font = font)
+    image.show()
+
+
 def predict(path):
-    take_label(path)
     mtcnn = MTCNN(
         image_size=160, margin=0, min_face_size=20,
         thresholds=[0.6, 0.7, 0.7], factor=0.709, post_process=True,
         device=device
     )
     image = load_img(path)
-    path_img_save = "test.jpg"
-    mtcnn(image,path_img_save)
+    faces,batch_boxes= mtcnn(image,None,True)
 
     resnet = InceptionResnetV1(
         classify=True,
@@ -55,16 +53,15 @@ def predict(path):
 
     resnet.load_state_dict(torch.load("weights/resnet_face.pth",map_location=torch.device('cpu')))
     resnet.eval()
-    image = load_img_res(path_img_save)
-    result = resnet(image)
+    result = resnet(faces.unsqueeze(0))
     id = int(torch.argmax(result))
 
     folder_img = "/home/congnt/congnt/python/face_recognition/img"
     list_name = os.listdir(folder_img)
     list_name.sort()
-    with open("class.txt",'a') as file:
-        for i in list_name:
-            file.write(i+"\n")
     print("Predict:",list_name[id])
+    draw_image(path,list_name[id],batch_boxes)
 
-predict("img/Vijay Deverakonda/Vijay Deverakonda_7.jpg")
+
+path = "img/Natalie Portman/Natalie Portman_10.jpg"
+predict(path)
