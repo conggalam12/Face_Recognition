@@ -1,4 +1,6 @@
-from facenet_pytorch import MTCNN, training
+from models.mtcnn import MTCNN
+from models.inception_resnet_v1 import InceptionResnetV1
+from models.utils import training
 import torch
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
