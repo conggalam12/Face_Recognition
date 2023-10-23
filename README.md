@@ -40,10 +40,14 @@ And you run train MTCNN , take the face each images like that <br>
 ![img2](https://github.com/conggalam12/Face_Recognition/blob/main/img/Vijay%20Deverakonda_90.jpg)
 
 Continue train facenet
-
-## Using with single face
+## Using with single face but not show box
 ```
 python demo.py --path_img [path_your_image] --path_model [path_youe_model]
+
+```
+## Using with single face
+```
+python demo_single.py --path_img [path_your_image] --path_model [path_youe_model]
 ```
 ## Result single face
 |||
