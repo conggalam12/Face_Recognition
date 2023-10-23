@@ -21,20 +21,20 @@ def load_img(path):
     return image
 
 
-def draw_image(path,name,boxes):
-    image = Image.open(path)
-    w_image,h_image = image.size
-    # image = image.resize((512, 512))
-    draw = ImageDraw.Draw(image)
-    scale_w = w_image/512
-    scale_h = h_image/521
-    x, y, w, h = boxes[0][0],boxes[0][1],boxes[0][2],boxes[0][3]
-    x , w = x*scale_w,w*scale_w
-    y , h = y*scale_h,h*scale_h
-    font = ImageFont.truetype("font/times new roman bold.ttf", size=24)
-    draw.rectangle([x,y,w,h], outline="green", width=4)
-    draw.text((x, y - 30), name, fill="red",font = font)
-    image.show()
+# def draw_image(path,name,boxes):
+#     image = Image.open(path)
+#     w_image,h_image = image.size
+#     # image = image.resize((512, 512))
+#     draw = ImageDraw.Draw(image)
+#     scale_w = w_image/512
+#     scale_h = h_image/521
+#     x, y, w, h = boxes[0][0],boxes[0][1],boxes[0][2],boxes[0][3]
+#     x , w = x*scale_w,w*scale_w
+#     y , h = y*scale_h,h*scale_h
+#     font = ImageFont.truetype("font/times new roman bold.ttf", size=24)
+#     draw.rectangle([x,y,w,h], outline="green", width=4)
+#     draw.text((x, y - 30), name, fill="red",font = font)
+#     image.show()
 
 
 def predict(path_img,path_model_resnet):
@@ -44,8 +44,8 @@ def predict(path_img,path_model_resnet):
         device=device
     )
     image = load_img(path_img)
-    faces,batch_boxes= mtcnn(image,None,True)
-
+    # faces,batch_boxes= mtcnn(image,None,True)
+    faces,_= mtcnn(image,None,True)
     resnet = InceptionResnetV1(
         classify=True,
         pretrained='vggface2',
@@ -60,7 +60,8 @@ def predict(path_img,path_model_resnet):
     with open("class.txt",'r') as file:
         name = file.read()
         list_name = name.split("\n")
-    draw_image(path_img,list_name[id],batch_boxes)
+    print(list_name[id])
+    # draw_image(path_img,list_name[id],batch_boxes)
 def parse_opt():
     parser = argparse.ArgumentParser()
     parser.add_argument('--path_img',type=str,required=True,help='path_img')
