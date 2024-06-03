@@ -42,12 +42,12 @@ And you run train MTCNN , take the face each images like that <br>
 Continue train facenet
 ## Using with single face but not show box
 ```
-python demo.py --path_img [path_your_image] --path_model [path_youe_model]
+python demo.py --path_img [path_your_image] --path_model [path_your_model]
 
 ```
 ## Using with single face
 ```
-python demo_single.py --path_img [path_your_image] --path_model [path_youe_model]
+python demo_single.py --path_img [path_your_image] --path_model [path_your_model]
 ```
 ## Result single face
 |||
@@ -56,7 +56,7 @@ python demo_single.py --path_img [path_your_image] --path_model [path_youe_model
 |![img3](https://github.com/conggalam12/Face_Recognition/blob/main/img/robert.PNG) | ![img4](https://github.com/conggalam12/Face_Recognition/blob/main/img/robert2.PNG) |
 ## Use with multiple faces
 ```
-python demo_multi.py --path_img [path_your_image] --path_model [path_youe_model]
+python demo_multi.py --path_img [path_your_image] --path_model [path_your_model]
 ```
 ## Result multiple face
 |||
